@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Home from '../components/Home';
 
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
             </ul>
           </div>
         </nav>
+          <Home />
         {this.props.children}
       </div>
     )
