@@ -23,17 +23,16 @@ class Home extends React.Component {
 	grabAllTweets() {
 		let socialMediaProvider = this.state.socialMediaAct;
 		const twitterTweet = [];
-		for(let property in socialMediaProvider) {
-			if(socialMediaProvider[property].provider == "twitter") {
-				twitterTweet.push(property);
+		for(let i = 0; i < socialMediaProvider.length; i++) {
+			if(socialMediaProvider[i].provider == "twitter") {
+				twitterTweet.push(socialMediaProvider[i]);
 			}
 		}
 		return twitterTweet;
 	}
 
 	// getTweets() {
-	// 	const tweets = this.state.socialMediaAct;
-	// 	return tweets.map( (tweet) => {
+	// 	return twitterTweet.map( (tweet) => {
 	// 		<Twitter username={tweet.actor_username} content={tweet.activity_message}
 	// 		 date={tweet.activity_date} key={tweet.id} />
 	// 	});
@@ -43,7 +42,6 @@ class Home extends React.Component {
 		return(
 			<div>
 				<h2>Hello</h2>
-				{this.grabAllTweets()}
 			</div>
 		)
 	}
