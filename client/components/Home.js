@@ -5,8 +5,7 @@ import Twitter from './Twitter';
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
-		// this.getTweets = this.getTweets.bind(this);
-		this.grabAllTweets = this.grabAllTweets.bind(this);
+		this.getTweets = this.getTweets.bind(this);
 		this.state = { socialMediaAct: [] };
 	}
 
@@ -20,28 +19,23 @@ class Home extends React.Component {
 		})
 	}
 
-	grabAllTweets() {
-		let socialMediaProvider = this.state.socialMediaAct;
-		const twitterTweet = [];
-		for(let i = 0; i < socialMediaProvider.length; i++) {
-			if(socialMediaProvider[i].provider == "twitter") {
-				twitterTweet.push(socialMediaProvider[i]);
+	getTweets() {
+		let twitterTweet = [];
+		this.state.socialMediaAct.map( (tweet) => {
+			if(tweet.provider == "twitter") { 
+				twitterTweet.push(<Twitter username={tweet.actor_username} content={tweet.activity_message}
+				 date={tweet.activity_date} key={tweet.id} />
+				)
 			}
-		}
+		})
 		return twitterTweet;
 	}
-
-	// getTweets() {
-	// 	return twitterTweet.map( (tweet) => {
-	// 		<Twitter username={tweet.actor_username} content={tweet.activity_message}
-	// 		 date={tweet.activity_date} key={tweet.id} />
-	// 	});
-	// }
 
 	render() {
 		return(
 			<div>
 				<h2>Hello</h2>
+				{this.getTweets()}
 			</div>
 		)
 	}
