@@ -3,6 +3,8 @@ import $ from 'jquery';
 import Twitter from './Twitter';
 import Facebook from './Facebook';
 import Instagram from './Instagram';
+import Reddit from './Reddit';
+import Tumblr from './Tumblr';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -10,7 +12,9 @@ class Home extends React.Component {
 		this.getTweets = this.getTweets.bind(this);
 		this.getFbPosts = this.getFbPosts.bind(this);
 		this.getIgPosts = this.getIgPosts.bind(this);
-		this.state = { socialMediaAct: [] };
+		this.getRedditPosts = this.getRedditPosts.bind(this);
+		this.getTumblrPosts = this.getTumblrPosts.bind(this);
+		this.state = { socialMediaAct: [], filterPosts: [], };
 	}
 
 	componentWillMount() {
@@ -33,7 +37,7 @@ class Home extends React.Component {
 				)
 			}
 		})
-		return tweet;		
+		this.setState({filterPosts: tweet})
 	}
 
 	getFbPosts() {
@@ -46,7 +50,7 @@ class Home extends React.Component {
 				)
 			}
 		})
-		return fbPost;		
+		this.setState({filterPosts: fbPost})	
 	}
 
 	getIgPosts() {
@@ -59,15 +63,47 @@ class Home extends React.Component {
 				)
 			}
 		})
-		return igPost;				
+		this.setState({filterPosts: igPost})			
 	}
 
+	getRedditPosts() {
+		let rdPost = [];
+		this.state.socialMediaAct.map( (post) => {
+			if(post.provider == "reddit") { 
+				rdPost.push(
+				<Reddit username={post.actor_username} content={post.activity_message}
+				 date={post.activity_date} platform={post.provider} key={post.id} />
+				)
+			}
+		})
+		this.setState({filterPosts: rdPost})			
+	}	
+
+	getTumblrPosts() {
+		let tmblPost = [];
+		this.state.socialMediaAct.map( (post) => {
+			if(post.provider == "tumblr") { 
+				tmblPost.push(
+				<Tumblr username={post.actor_username} content={post.activity_message}
+				 date={post.activity_date} platform={post.provider} key={post.id} />
+				)
+			}
+		})
+		this.setState({filterPosts: tmblPost})			
+	}		
+
 	render() {
+		let posts = this.state.filterPosts;
 		return(
 			<div className="row">
-				<button className="btn" onClick={() => this.getFbPosts()}>FaceBook</button>
-				<button className="btn" onClick={() => this.getTweets()}>Twitter</button>
-				{this.getTweets()}
+				<div className="center-align">
+					<button className="btn" onClick={() => (this.getTweets())}>Twitter</button>
+					<button className="btn" onClick={() => (this.getFbPosts())}>FaceBook</button>
+					<button className="btn" onClick={() => (this.getIgPosts())}>Instagram</button>
+					<button className="btn" onClick={() => (this.getRedditPosts())}>Reddit</button>
+					<button className="btn" onClick={() => (this.getTumblrPosts())}>Tumblr</button>
+				</div>
+				{posts}
 			</div>
 		)
 	}
