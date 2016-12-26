@@ -7,9 +7,10 @@ class Twitter extends React.Component {
 
 	render() {
 		return(
-			<div className="row">
-				<div className="tweet col s6 m4">
-					<p className="tweet-username">{this.props.username}</p>
+			<div>
+				<div className="tweet col s6 m6">
+					<h4 className="tweet-username">{this.props.username}</h4>
+					<h4 className="provider">{this.props.platform}</h4>
 					<p className="tweet-content">{this.props.content}</p>
 					<p className="tweet-date">{this.props.date}</p>
 				</div>	

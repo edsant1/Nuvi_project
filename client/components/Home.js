@@ -1,11 +1,15 @@
 import React from 'react';
 import $ from 'jquery';
 import Twitter from './Twitter';
+import Facebook from './Facebook';
+import Instagram from './Instagram';
 
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.getTweets = this.getTweets.bind(this);
+		this.getFbPosts = this.getFbPosts.bind(this);
+		this.getIgPosts = this.getIgPosts.bind(this);
 		this.state = { socialMediaAct: [] };
 	}
 
@@ -20,21 +24,49 @@ class Home extends React.Component {
 	}
 
 	getTweets() {
-		let twitterTweet = [];
-		this.state.socialMediaAct.map( (tweet) => {
-			if(tweet.provider == "twitter") { 
-				twitterTweet.push(<Twitter username={tweet.actor_username} content={tweet.activity_message}
-				 date={tweet.activity_date} key={tweet.id} />
+		let tweet = [];
+		this.state.socialMediaAct.map( (post) => {
+			if(post.provider == "twitter") { 
+				tweet.push(
+				<Twitter username={post.actor_username} content={post.activity_message}
+				 date={post.activity_date} platform={post.provider} key={post.id} />
 				)
 			}
 		})
-		return twitterTweet;
+		return tweet;		
+	}
+
+	getFbPosts() {
+		let fbPost = [];
+		this.state.socialMediaAct.map( (post) => {
+			if(post.provider == "facebook") { 
+				fbPost.push(
+				<Facebook username={post.actor_username} content={post.activity_message}
+				 date={post.activity_date} platform={post.provider} key={post.id} />
+				)
+			}
+		})
+		return fbPost;		
+	}
+
+	getIgPosts() {
+		let igPost = [];
+		this.state.socialMediaAct.map( (post) => {
+			if(post.provider == "instagram") { 
+				igPost.push(
+				<Instagram username={post.actor_username} content={post.activity_message}
+				 date={post.activity_date} platform={post.provider} key={post.id} />
+				)
+			}
+		})
+		return igPost;				
 	}
 
 	render() {
 		return(
-			<div>
-				<h2>Hello</h2>
+			<div className="row">
+				<button className="btn" onClick={() => this.getFbPosts()}>FaceBook</button>
+				<button className="btn" onClick={() => this.getTweets()}>Twitter</button>
 				{this.getTweets()}
 			</div>
 		)
