@@ -1,0 +1,17 @@
+.col.tweet {
+	border: 1px solid black;
+	margin-top: 10px;
+	background-color: white;
+}
+
+.info {
+	border-bottom: 1px solid black;
+}
+
+.tweet-username {
+	border-right: 1px solid black;
+}
+
+body {
+	background-color: #edefed;
+}

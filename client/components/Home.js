@@ -1,10 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import Twitter from './Twitter';
-import Facebook from './Facebook';
-import Instagram from './Instagram';
-import Reddit from './Reddit';
-import Tumblr from './Tumblr';
+import SocialMedia from './SocialMedia';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -32,7 +28,7 @@ class Home extends React.Component {
 		this.state.socialMediaAct.map( (post) => {
 			if(post.provider == "twitter") { 
 				tweet.push(
-				<Twitter username={post.actor_username} content={post.activity_message}
+				<SocialMedia username={post.actor_username} content={post.activity_message}
 				 date={post.activity_date} platform={post.provider} key={post.id} />
 				)
 			}
@@ -45,7 +41,7 @@ class Home extends React.Component {
 		this.state.socialMediaAct.map( (post) => {
 			if(post.provider == "facebook") { 
 				fbPost.push(
-				<Facebook username={post.actor_username} content={post.activity_message}
+				<SocialMedia username={post.actor_username} content={post.activity_message}
 				 date={post.activity_date} platform={post.provider} key={post.id} />
 				)
 			}
@@ -58,7 +54,7 @@ class Home extends React.Component {
 		this.state.socialMediaAct.map( (post) => {
 			if(post.provider == "instagram") { 
 				igPost.push(
-				<Instagram username={post.actor_username} content={post.activity_message}
+				<SocialMedia username={post.actor_username} content={post.activity_message}
 				 date={post.activity_date} platform={post.provider} key={post.id} />
 				)
 			}
@@ -71,7 +67,7 @@ class Home extends React.Component {
 		this.state.socialMediaAct.map( (post) => {
 			if(post.provider == "reddit") { 
 				rdPost.push(
-				<Reddit username={post.actor_username} content={post.activity_message}
+				<SocialMedia username={post.actor_username} content={post.activity_message}
 				 date={post.activity_date} platform={post.provider} key={post.id} />
 				)
 			}
@@ -84,7 +80,7 @@ class Home extends React.Component {
 		this.state.socialMediaAct.map( (post) => {
 			if(post.provider == "tumblr") { 
 				tmblPost.push(
-				<Tumblr username={post.actor_username} content={post.activity_message}
+				<SocialMedia username={post.actor_username} content={post.activity_message}
 				 date={post.activity_date} platform={post.provider} key={post.id} />
 				)
 			}
@@ -95,7 +91,7 @@ class Home extends React.Component {
 	render() {
 		let posts = this.state.filterPosts;
 		return(
-			<div className="row">
+			<div>
 				<div className="center-align">
 					<button className="btn" onClick={() => (this.getTweets())}>Twitter</button>
 					<button className="btn" onClick={() => (this.getFbPosts())}>FaceBook</button>
@@ -103,7 +99,9 @@ class Home extends React.Component {
 					<button className="btn" onClick={() => (this.getRedditPosts())}>Reddit</button>
 					<button className="btn" onClick={() => (this.getTumblrPosts())}>Tumblr</button>
 				</div>
-				{posts}
+				<div className="row">
+					{posts}
+				</div>
 			</div>
 		)
 	}
