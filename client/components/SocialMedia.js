@@ -3,6 +3,12 @@ import React from 'react';
 class SocialMedia extends React.Component {
 	constructor(props) {
 		super(props);
+		this.toggleLike = this.toggleLike.bind(this);
+		this.state = { like: true }
+	}
+
+	toggleLike() {
+		this.setState({ like: !this.state.like });
 	}
 
 	render() {
@@ -28,6 +34,13 @@ class SocialMedia extends React.Component {
 				</div>
 				<div className="col s12 m12">
 					<p className="tweet-content">{this.props.content}</p>
+					<hr />
+				</div>
+				<div className="like-icon col s6 m8">
+					<i className="material-icons" onClick={this.toggleLike}>{ this.state.like ? 'favorite_border' : 'favorite' }</i>
+				</div>
+				<div className="comment-btn col s6 m2">
+					<p>Comment</p>
 				</div>
 			</div>	
 		)

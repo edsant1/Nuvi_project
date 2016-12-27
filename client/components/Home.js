@@ -29,7 +29,7 @@ class Home extends React.Component {
 			if(post.provider == "twitter") { 
 				tweet.push(
 				<SocialMedia username={post.actor_username} content={post.activity_message}
-				 date={post.activity_date} platform={post.provider} key={post.id} />
+				 date={post.activity_date} platform={post.provider.toUpperCase()} key={post.id} />
 				)
 			}
 		})
@@ -42,7 +42,7 @@ class Home extends React.Component {
 			if(post.provider == "facebook") { 
 				fbPost.push(
 				<SocialMedia username={post.actor_username} content={post.activity_message}
-				 date={post.activity_date} platform={post.provider} key={post.id} />
+				 date={post.activity_date} platform={post.provider.toUpperCase()} key={post.id} />
 				)
 			}
 		})
@@ -55,7 +55,7 @@ class Home extends React.Component {
 			if(post.provider == "instagram") { 
 				igPost.push(
 				<SocialMedia username={post.actor_username} content={post.activity_message}
-				 date={post.activity_date} platform={post.provider} key={post.id} />
+				 date={post.activity_date} platform={post.provider.toUpperCase()} key={post.id} />
 				)
 			}
 		})
@@ -68,7 +68,7 @@ class Home extends React.Component {
 			if(post.provider == "reddit") { 
 				rdPost.push(
 				<SocialMedia username={post.actor_username} content={post.activity_message}
-				 date={post.activity_date} platform={post.provider} key={post.id} />
+				 date={post.activity_date} platform={post.provider.toUpperCase()} key={post.id} />
 				)
 			}
 		})
@@ -81,7 +81,7 @@ class Home extends React.Component {
 			if(post.provider == "tumblr") { 
 				tmblPost.push(
 				<SocialMedia username={post.actor_username} content={post.activity_message}
-				 date={post.activity_date} platform={post.provider} key={post.id} />
+				 date={post.activity_date} platform={post.provider.toUpperCase()} key={post.id} />
 				)
 			}
 		})

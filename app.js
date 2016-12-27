@@ -8,7 +8,6 @@ var mongoose = require('mongoose');
 mongoose.connect( 'mongodb://localhost/nuvi-project');
 
 var routes = require('./routes/index');
-var activity = require('./routes/activity');
 
 var app = express();
 
@@ -35,7 +34,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //API ROUTES
-app.use('api/activity', activity);
 
 // error handlers
 
