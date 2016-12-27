@@ -17,6 +17,13 @@
 	margin-top: 14px;
 }
 
+.comment-btn {
+	cursor: pointer;
+}
+
+.material-icons {
+	cursor: pointer;
+}
 
 body {
 	background-color: #edefed;

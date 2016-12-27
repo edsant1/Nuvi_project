@@ -1,17 +1,34 @@
 import React from 'react';
+import CommentForm from './CommentForm'
 
 class SocialMedia extends React.Component {
 	constructor(props) {
 		super(props);
 		this.toggleLike = this.toggleLike.bind(this);
-		this.state = { like: true }
+		this.toggleForm = this.toggleForm.bind(this);
+		this.addCommentContent = this.addCommentContent.bind(this);
+		this.state = { like: true, form: false, comments: [], id: 0 };
 	}
 
 	toggleLike() {
 		this.setState({ like: !this.state.like });
 	}
 
+	toggleForm() {
+		this.setState({ form: !this.state.form });
+	}
+
+	addCommentContent(comment) {
+		let commentCounter = ++this.state.id;
+		this.setState({ comments: [{comment, commentCounter}, ...this.state.comments], form: false });
+	}
+
 	render() {
+		const displayComment = this.state.comments.map( (comment) => {
+			return (
+				<div className="comment-div col s12 m8" key={comment.commentCounter}><h5>{comment.comment}</h5></div>
+			);
+		});
 		return(
 			<div className="tweet offset-m1 col s12 m5" height="700px">
 				<div className="info col s12 m9">
@@ -40,15 +57,13 @@ class SocialMedia extends React.Component {
 					<i className="material-icons" onClick={this.toggleLike}>{ this.state.like ? 'favorite_border' : 'favorite' }</i>
 				</div>
 				<div className="comment-btn col s6 m2">
-					<p>Comment</p>
+					<p className="btn blue" onClick={this.toggleForm}>Comment</p>
 				</div>
+				{displayComment}
+				{this.state.form ? <div className="offset-m1 col m11"><CommentForm addCommentContent={this.addCommentContent} form={this.state.form}/></div> : null }
 			</div>	
 		)
 	}
 }
 
 export default SocialMedia;
-
-//Analysts using our product typically need to know what social media “provider’ it is from
-// (e.g. Twitter, Facebook, Instagram, Reddit), the username on that social media site,
-// the content of the activity, including media, and when it was posted
