@@ -114,5 +114,6 @@ export default Home;
 //"activity_url":"https://twitter.com/mitchel.hilpert/4958613633","activity_latitude":"-0.3097010719843496",
 //"activity_longitude":"76.88793327501287","activity_date":"2016-12-22",
 //"activity_message":" https://placehold.it/500x500.jpeg/ffffff/000","activity_likes":7,
-//"activity_shares":12,"activity_comments":4,"activity_attachment":"https://placehold.it/500x500.jpeg/ffffff/000","activity_attachment_type":"image/jpeg","activity_sentiment":0}
+//"activity_shares":12,"activity_comments":4,"activity_attachment":"https://placehold.it/500x500.jpeg/ffffff/000",
+//"activity_attachment_type":"image/jpeg","activity_sentiment":0}
 
